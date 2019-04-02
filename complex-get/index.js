@@ -12,7 +12,7 @@ const searchURL = 'developer.nps.gov/api/v1/parks';
 
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
   return queryItems.join('&');
 }
 
@@ -21,15 +21,16 @@ function displayResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
   // iterate through the items array
-  for (let i = 0; i < responseJson.items.length; i++){
-    // for each video object in the items 
+  for (let i = 0; i < responseJson.data.length; i++){
+    // for each park object in the items 
     //array, add a list item to the results 
-    //list with the video title, description,
-    //and thumbnail
+    //list with the park name, description,
+    //and url
     $('#results-list').append(
       `<li><h3>${responseJson.data[i].fullName}</h3>
-      <p>${responseJson.data[i].snippet.description}</p>
-      <img src='${responseJson.data[i].snippet.thumbnails.default.url}'>
+      <p>${responseJson.data[i].description}</p>
+      <p>${responseJson.data[i].url}</p>
+      <p> 'text' </p>
       </li>`
     );}
   //display the results section  
