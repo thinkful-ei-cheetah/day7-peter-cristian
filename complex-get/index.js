@@ -6,8 +6,7 @@
 
 const apiKey = 'DV3HFODcaoBNRBLk4LBeRW3tZb3FjyVCKElrfUKe';
 
-
-const searchURL = 'developer.nps.gov/api/v1/parks';
+const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 
 function formatQueryParams(params) {
@@ -29,8 +28,7 @@ function displayResults(responseJson) {
     $('#results-list').append(
       `<li><h3>${responseJson.data[i].fullName}</h3>
       <p>${responseJson.data[i].description}</p>
-      <p>${responseJson.data[i].url}</p>
-      <p> 'text' </p>
+      <p><a href="${responseJson.data[i].url}">${responseJson.data[i].url}</a></p>
       </li>`
     );}
   //display the results section  
@@ -60,7 +58,7 @@ function getNationalParks(query, maxResults=10) {
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => displayResults(responseJson))
+    .then(displayResults)
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
@@ -76,3 +74,11 @@ function watchForm() {
 }
 
 $(watchForm);
+
+
+{/* <p>
+${responseJson.data[i].addresses.line1}<br/>
+${responseJson.data[i].addresses.line2}<br/>
+${responseJson.data[i].addresses.city}, ${responseJson.data[i].addresses.stateCode}<br/>
+${responseJson.data[i].addresses.postalCode}<br/>
+</p> */}
