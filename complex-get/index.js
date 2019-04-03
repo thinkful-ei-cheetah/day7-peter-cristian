@@ -74,11 +74,3 @@ function watchForm() {
 }
 
 $(watchForm);
-
-
-{/* <p>
-${responseJson.data[i].addresses.line1}<br/>
-${responseJson.data[i].addresses.line2}<br/>
-${responseJson.data[i].addresses.city}, ${responseJson.data[i].addresses.stateCode}<br/>
-${responseJson.data[i].addresses.postalCode}<br/>
-</p> */}
